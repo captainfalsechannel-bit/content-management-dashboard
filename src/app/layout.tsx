@@ -28,7 +28,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
     >
-      <body className="flex h-screen overflow-hidden bg-[hsl(var(--background))] text-[hsl(var(--foreground))]">
+      <body className="flex h-screen overflow-hidden" style={{ backgroundColor: "#0f0f11", color: "#f1f1f3" }}>
         <Sidebar />
         <main className="flex-1 overflow-y-auto p-8">
           {children}

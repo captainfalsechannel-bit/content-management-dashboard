@@ -1,71 +1,82 @@
-import { PageHeader } from "@/components/layout/page-header";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Camera, BarChart3, CalendarDays, Users, Newspaper } from "lucide-react";
 
 const sections = [
   {
     title: "Instagram Manager",
-    description: "Manage posts, stories, and engagement across your Instagram accounts.",
+    description: "Manage posts, stories, and engagement. Kanban board with full CRUD.",
     icon: Camera,
     href: "/instagram",
-    color: "text-pink-400",
+    iconColor: "#ec4899",
+    iconBg: "#ec489920",
   },
   {
     title: "Analytics",
-    description: "Track performance metrics, growth trends, and audience insights.",
+    description: "Track impressions, engagement rate, follower growth, and link clicks.",
     icon: BarChart3,
     href: "/analytics",
-    color: "text-blue-400",
+    iconColor: "#3b82f6",
+    iconBg: "#3b82f620",
   },
   {
     title: "Content Calendar",
-    description: "Plan and schedule content across all your platforms in one place.",
+    description: "Monthly view with multi-platform scheduling and status tracking.",
     icon: CalendarDays,
     href: "/calendar",
-    color: "text-green-400",
+    iconColor: "#22c55e",
+    iconBg: "#22c55e20",
   },
   {
     title: "Competitor Tracker",
-    description: "Monitor competitor activity, benchmarks, and market positioning.",
+    description: "Sortable table of competitors with sparklines, growth, and engagement.",
     icon: Users,
     href: "/competitors",
-    color: "text-yellow-400",
+    iconColor: "#f59e0b",
+    iconBg: "#f59e0b20",
   },
   {
     title: "News Consolidator",
-    description: "Aggregate industry news and trending topics relevant to your niche.",
+    description: "Curated industry news with category filters and live search.",
     icon: Newspaper,
     href: "/news",
-    color: "text-purple-400",
+    iconColor: "#8b5cf6",
+    iconBg: "#8b5cf620",
   },
 ];
 
 export default function DashboardPage() {
   return (
-    <div>
-      <PageHeader
-        title="Dashboard"
-        description="Welcome to your content management hub. Navigate to any section to get started."
-      />
+    <div style={{ color: "#f1f1f3" }}>
+      <div className="mb-8">
+        <h1 className="text-2xl font-bold mb-1">Dashboard</h1>
+        <p className="text-sm" style={{ color: "#8b8b9a" }}>Welcome to your content management hub. Select a section to get started.</p>
+      </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {sections.map((section) => {
           const Icon = section.icon;
           return (
-            <a key={section.href} href={section.href} className="group">
-              <Card className="h-full transition-colors hover:border-[hsl(var(--primary))]/50 hover:bg-[hsl(var(--accent))]">
-                <CardHeader className="pb-3">
-                  <div className="flex items-center justify-between">
-                    <Icon className={`h-6 w-6 ${section.color}`} />
-                    <Badge variant="secondary">Active</Badge>
-                  </div>
-                  <CardTitle className="text-base mt-3">{section.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription>{section.description}</CardDescription>
-                </CardContent>
-              </Card>
+            <a
+              key={section.href}
+              href={section.href}
+              className="group block rounded-xl p-5 transition-all"
+              style={{ backgroundColor: "#1c1c24", border: "1px solid #2a2a2e" }}
+              onMouseEnter={e => {
+                e.currentTarget.style.borderColor = section.iconColor + "60";
+                e.currentTarget.style.backgroundColor = "#1c1c24";
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.borderColor = "#2a2a2e";
+                e.currentTarget.style.backgroundColor = "#1c1c24";
+              }}
+            >
+              <div
+                className="w-10 h-10 rounded-lg flex items-center justify-center mb-4"
+                style={{ backgroundColor: section.iconBg }}
+              >
+                <Icon className="w-5 h-5" style={{ color: section.iconColor }} />
+              </div>
+              <h2 className="text-sm font-semibold mb-1.5" style={{ color: "#f1f1f3" }}>{section.title}</h2>
+              <p className="text-xs leading-relaxed" style={{ color: "#8b8b9a" }}>{section.description}</p>
             </a>
           );
         })}
