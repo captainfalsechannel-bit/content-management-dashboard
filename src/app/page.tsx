@@ -1,3 +1,5 @@
+"use client";
+
 import { Camera, BarChart3, CalendarDays, Users, Newspaper } from "lucide-react";
 
 const sections = [
