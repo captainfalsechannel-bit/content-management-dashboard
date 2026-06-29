@@ -10,14 +10,15 @@ import {
   Newspaper,
   LayoutDashboard,
 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const navItems = [
-  { label: "Dashboard",          href: "/",           icon: LayoutDashboard },
-  { label: "Instagram Manager",  href: "/instagram",  icon: Camera },
-  { label: "Analytics",          href: "/analytics",  icon: BarChart3 },
-  { label: "Content Calendar",   href: "/calendar",   icon: CalendarDays },
-  { label: "Competitor Tracker", href: "/competitors",icon: Users },
-  { label: "News Consolidator",  href: "/news",       icon: Newspaper },
+  { label: "Dashboard",          href: "/",            icon: LayoutDashboard },
+  { label: "Instagram Manager",  href: "/instagram",   icon: Camera },
+  { label: "Analytics",          href: "/analytics",   icon: BarChart3 },
+  { label: "Content Calendar",   href: "/calendar",    icon: CalendarDays },
+  { label: "Competitor Tracker", href: "/competitors", icon: Users },
+  { label: "News Consolidator",  href: "/news",        icon: Newspaper },
 ];
 
 export function Sidebar() {
@@ -31,7 +32,12 @@ export function Sidebar() {
       {/* Logo */}
       <div className="flex h-14 items-center px-5 border-b" style={{ borderColor: "#2a2a2e" }}>
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-md flex items-center justify-center text-white text-xs font-bold" style={{ backgroundColor: "#8b5cf6" }}>C</div>
+          <div
+            className="w-6 h-6 rounded-md flex items-center justify-center text-white text-xs font-bold"
+            style={{ backgroundColor: "#8b5cf6" }}
+          >
+            C
+          </div>
           <span className="text-sm font-semibold" style={{ color: "#f1f1f3" }}>CMS Dashboard</span>
         </div>
       </div>
@@ -46,23 +52,12 @@ export function Sidebar() {
             <Link
               key={item.href}
               href={item.href}
-              className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors"
-              style={{
-                backgroundColor: isActive ? "#8b5cf620" : "transparent",
-                color: isActive ? "#8b5cf6" : "#8b8b9a",
-              }}
-              onMouseEnter={e => {
-                if (!isActive) {
-                  e.currentTarget.style.backgroundColor = "#ffffff08";
-                  e.currentTarget.style.color = "#f1f1f3";
-                }
-              }}
-              onMouseLeave={e => {
-                if (!isActive) {
-                  e.currentTarget.style.backgroundColor = "transparent";
-                  e.currentTarget.style.color = "#8b8b9a";
-                }
-              }}
+              className={cn(
+                "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                isActive
+                  ? "text-[#8b5cf6] bg-[#8b5cf6]/10"
+                  : "text-[#8b8b9a] hover:text-[#f1f1f3] hover:bg-white/5"
+              )}
             >
               <Icon className="h-4 w-4 shrink-0" />
               {item.label}
